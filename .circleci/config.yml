@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs: 
+  slack: circleci/slack@4.10.1
+
 jobs:
   build-frontend:
     docker:
@@ -75,7 +78,7 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm audit fix --audit-level=critical
+            npm audit --audit-level=critical
 
   scan-backend:
     docker:
@@ -89,7 +92,7 @@ jobs:
           command: |
             cd backend
             npm install
-            npm audit fix --audit-level=critical
+            npm audit --audit-level=critical
 
 workflows:
   default:
