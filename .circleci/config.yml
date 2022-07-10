@@ -101,6 +101,10 @@ jobs:
             cd frontend
             npm install
             npm audit --audit-level=critical
+      - slack/notify:
+          event: fail
+          mentions: "@ochiengotieno71"
+          template: basic_fail_1
 
   scan-backend:
     docker:
@@ -115,6 +119,10 @@ jobs:
             cd backend
             npm install
             npm audit --audit-level=critical
+      - slack/notify:
+          event: fail
+          mentions: "@ochiengotieno71"
+          template: basic_fail_1
 
 workflows:
   default:
@@ -127,8 +135,7 @@ workflows:
           requires: [build-backend]
       - scan-frontend:
           requires: [build-frontend]
+          context: slack-secrets
       - scan-backend:
           requires: [build-backend]
-      - notify:
           context: slack-secrets
-          
