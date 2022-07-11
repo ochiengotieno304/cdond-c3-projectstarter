@@ -185,3 +185,5 @@ workflows:
           requires: [build-backend]
           context: slack-secrets
       - deploy-infrastructure
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
