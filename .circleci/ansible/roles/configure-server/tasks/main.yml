@@ -9,11 +9,6 @@
   apt:
     upgrade: yes
 
-- name: "remove irrelevant dependencies"
-  become: yes
-  apt:
-    autoremove: yes
-
 - name: "install dependencies"
   become: yes
   apt:
