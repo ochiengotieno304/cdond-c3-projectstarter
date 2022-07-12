@@ -202,7 +202,7 @@ jobs:
           name: Install dependencies
           command: |
             yum update
-            # yum install epel-release
+            yum install epel-release
             yum install -y nodejs
             yum install -y tar gzip
             yum install -y python3
