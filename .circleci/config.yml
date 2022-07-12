@@ -203,7 +203,7 @@ jobs:
           command: |
             yum install -y tar gzip
             yum install -y python3
-            yum install -y ansible
+            python3 -m pip install ansible
             touch ~/.bashrc
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
             source ~/.bashrc
