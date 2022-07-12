@@ -172,7 +172,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: circleci/node:13.8.0
+      - image: python:3.7-alpine3.12
     steps:
       - checkout
       - add_ssh_keys:
@@ -182,7 +182,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansible tar gzip nodejs aws-cli
+            apk add --update ansible tar gzip nodejs aws-cli pm2
       - run:
           name: Configure server
           command: |
