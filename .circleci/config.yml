@@ -195,19 +195,13 @@ jobs:
 
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: |
-            yum install -y tar gzip
-            yum install -y python3
-            python3 -m pip install ansible
-            touch ~/.bashrc
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-            source ~/.bashrc
-            nvm install 13.8.0            
+            apk add --update --no-cache tar gzip nodejs npm ansible aws-cli           
       - run:
           name: Get backend url
           command: |
