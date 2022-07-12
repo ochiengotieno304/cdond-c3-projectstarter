@@ -238,7 +238,6 @@ jobs:
       - run:
           name: Deploy frontend objects
           command: |
-            nvm use 13.8.0
             cd frontend
             npm install
             npm run build
