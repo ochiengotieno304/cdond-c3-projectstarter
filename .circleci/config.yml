@@ -224,7 +224,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update tar gzip nodejs npm ansible aws-cli
+            apk add --update tar gzip nodejs npm ansible aws-cli tar gzip curl rsync openssh
       - run:
           name: Get backend url
           command: |
