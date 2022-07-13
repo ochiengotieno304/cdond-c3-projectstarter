@@ -174,11 +174,11 @@ jobs:
     docker:
       - image: python:3.7-alpine3.11
     steps:
-      - run: apk add --update tar
-      - run: apk add --update gzip
       - checkout
       - add_ssh_keys:
           fingerprints: ["69:3e:e1:32:3b:60:59:ca:7a:61:42:50:80:a0:51:bb"]
+      - run: apk add --update tar
+      - run: apk add --update gzip
       - attach_workspace:
           at: ~/
       - run:
@@ -186,17 +186,11 @@ jobs:
           command: |
             apk add --update ansible
             pip install awscli
-            aws --version
       - run:
           name: Configure server
           command: |
             cd .circleci/ansible 
-            ansible-playbook -i inventory configure-server.yml
-            # save backend back to workspace
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project/backend
+            ansible-playbook -i inventory.txt configure-server.yml
 
   run-migrations:
     docker:
