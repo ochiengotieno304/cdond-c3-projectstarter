@@ -242,9 +242,9 @@ jobs:
             tar -czvf artifact-e911579.tar.gz dist
             aws s3 cp dist s3://udapeople-e911579 --recursive
       - destroy-environment:
-          workflow_id: "e911579"
+          workflow_id: e911579
       - revert-migrations:
-          workflow_id: "e911579"
+          workflow_id: e911579
 
   deploy-backend:
     docker:
@@ -274,9 +274,9 @@ jobs:
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
       - destroy-environment:
-          workflow_id: "e911579"
+          workflow_id: e911579
       - revert-migrations:
-          workflow_id: "e911579"
+          workflow_id: e911579
 
   smoke-test:
     docker:
