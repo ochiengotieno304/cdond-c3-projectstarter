@@ -189,8 +189,23 @@ jobs:
       - run:
           name: Configure server
           command: |
+            echo TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}" >> ~/project/backend/.env
+            echo TYPEORM_ENTITIES: "{{ lookup('env', 'TYPEORM_ENTITIES')}}" >> ~/project/backend/.env
+            echo TYPEORM_HOST: "{{ lookup('env', 'TYPEORM_HOST')}}" >> ~/project/backend/.env
+            echo TYPEORM_PORT: 5432 >> ~/project/backend/.env
+            echo TYPEORM_USERNAME: "{{ lookup('env', 'TYPEORM_USERNAME')}}" >> ~/project/backend/.env
+            echo TYPEORM_PASSWORD: "{{ lookup('env', 'TYPEORM_PASSWORD')}}" >> ~/project/backend/.env
+            echo TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE')}}" >> ~/project/backend/.env
+            echo TYPEORM_MIGRATIONS: "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}" >> ~/project/backend/.env
+            echo TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}" >> ~/project/backend/.env
+            cat ~/project/backend/.env
+
             cd .circleci/ansible 
             ansible-playbook -i inventory.txt configure-server.yml
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/backend/.env
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
@@ -208,6 +223,7 @@ jobs:
           command: |
             cd backend
             npm install
+            npm run build
             npm run migrations > migrations_dump.txt
       - run:
           name: Send migration results to kvdb
