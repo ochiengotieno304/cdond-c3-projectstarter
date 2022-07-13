@@ -9,9 +9,9 @@
     src: artifact.tar.gz
     dest: ~/web
 
-- name: start server
-  shell: |
-    cd ~/web
-    npm install
-    pm2 stop default
-    sudo pm2 start npm -- start
+# - name: start server
+#   shell: |
+#     cd ~/web
+#     npm install
+#     pm2 stop default
+#     sudo pm2 start npm -- start
