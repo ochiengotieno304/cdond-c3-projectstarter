@@ -191,10 +191,10 @@ jobs:
           command: |
             cd .circleci/ansible 
             ansible-playbook -i inventory.txt configure-server.yml -vvv
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project/backend/.env
+      # - persist_to_workspace:
+      #     root: ~/
+      #     paths:
+      #       - project/backend/.env
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
